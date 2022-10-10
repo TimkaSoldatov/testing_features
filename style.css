@@ -48,6 +48,9 @@ table {
 }
 div{
     width:85%;
+	/**
+	width: 83;
+	*/
     max-width: 1000px;
     height:400px;
     background-color: #f00;
