@@ -55,7 +55,7 @@ div{
 	width: 83;
 	*/
     max-width: 1000px;
-    //height:400px;
+    /** height:400px; */
 	    height:360px;
     background-color: #f00;
     padding: 40px 10px 5px 20px;
