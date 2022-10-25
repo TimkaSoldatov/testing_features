@@ -92,7 +92,7 @@ echo '</pre>';*/
 $out = json_decode( $output, true );
 //IGNORE если есть BTC -> гривна, то не вставляем
 $query = 'INSERT IGNORE INTO `currencies` (`currency_pair`, `value`) VALUES ';
-$i     = 0;
+
 /**
  * Нужно сформировать запрос для вставки курса криптовалют в таблицу, после последней валюты в запросе не
  * должно быть запятой:
@@ -101,9 +101,7 @@ $i     = 0;
  * второй способ: foreach(implode()) делаем массив, потом implode()
  */
 foreach ( $out as $key => $value ) {
-	//$implodeQuery = implode("(",$key);.implode("',",$value);
-    $i ++;
-	if ( $i == count($out) ) {
+	if ( $value == end($out) ) {
 		$query .= "('$key', $value) ";
 	} else {
 		$query .= "('$key', $value), ";
@@ -119,8 +117,6 @@ if(!empty($mas_query)){
 }
 // выполнить запрос PDO $pdo->query($query)
 ?>
-
-
 <?php
 // Получаем курсы криптовалют из БД
 $sth = $pdo->prepare( "SELECT * FROM `currencies`" );
